@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+#define fst ios_base::sync_with_stdio(0); ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define PI acos(-1.0)
+#define rd freopen("ip.txt","r",stdin)
+#define wr freopen("op.txt", "w", stdout)
+#define wis(x) cout << #x << " is " << x << endl;
+#define mem(array,int) memset(array,int,sizeof(array))
+#define ll long long int
+#define nl cout<<endl;
+#define mx 10000009
+#define MOD 1000000007
+using namespace std;
+
+int main(){
+
+    int k;
+
+
+    vector< pair<int,int> >D;
+
+    while(cin>>k){
+
+        D.clear();
+        int counter=0;
+
+        for (int i = k+1; i <= 2*k ; ++i) {
+
+
+            if( (i*k) % (i-k) == 0  ){
+
+                counter++;
+
+                D.push_back( make_pair( (i*k) / (i-k), i ) );        
+
+            }
+        }
+
+        cout<<counter<<endl;
+        for (int j = 0; j < D.size(); ++j) {
+            printf("1/%d = 1/%d + 1/%d\n",k,D[j].first, D[j].second);
+        }
+
+    }
+
+
+
+    return  0;
+}

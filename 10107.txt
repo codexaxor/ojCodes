@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+#define fst ios_base::sync_with_stdio(0); ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define PI acos(-1.0)
+#define rd freopen("ip.txt","r",stdin)
+#define wr freopen("op.txt", "w", stdout)
+#define wis(x) cerr << #x << " is " << x << endl;
+#define mem(array,int) memset(array,int,sizeof(array))
+#define ll long long int
+#define nl cout<<endl;
+#define mx 900005
+#define MOD 1000000007
+using namespace std;
+
+int color[1000];
+
+int main()
+{
+
+    list<int> ls;
+    list<int>:: iterator it;
+
+    int ar[10000+5];
+
+    int in, i=0,j;
+    while( cin>>in )
+    {
+        ar[i] = in ;
+
+        sort(ar, ar+(i+1) );
+
+
+        int sz = i+1;
+
+        if( sz %2 == 1)
+            cout<<ar[i/2]<<endl;
+
+        else{
+            int l = ar[i/2] + ar[i/2 + 1] ;
+            cout<<l/2<<endl;
+        }
+
+
+        i++;
+
+    }
+    return 0;
+
+
+}

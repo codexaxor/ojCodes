@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+#define fst ios_base::sync_with_stdio(0); ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define PI acos(-1.0)
+#define rd freopen("ip.txt","r",stdin)
+#define wr freopen("op.txt", "w", stdout)
+#define wis(x) cerr << #x << " is " << x << endl;
+#define mem(array,int) memset(array,int,sizeof(array))
+#define ll long long int
+#define nl cout<<endl;
+#define mx 10000009
+#define MOD 1000000007
+using namespace std;
+
+
+
+int main(){
+
+    //rd;
+
+
+    string s;
+
+    char st[100005];
+
+    while( gets(st) ){
+
+
+        list <char> cr;
+        list <char>:: iterator it;
+
+
+        int lim = strlen(st);
+
+        for (int i = 0; i < lim; ++i) {
+
+
+            if(  s[i] == '[' ){
+                it = cr.begin();
+            }
+            else if( s[i] == ']' ){
+                it = cr.end();
+            }
+            else{
+                cr.insert(it,s[i]);
+            }
+        }
+
+        for (it = cr.begin(); it != cr.end() ; ++it) {
+            cout<< *it;
+        }
+        nl;
+
+    }
+
+    return  0;
+}

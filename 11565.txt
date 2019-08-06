@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+#define fst ios_base::sync_with_stdio(0); ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define PI acos(-1.0)
+#define rd freopen("ip.txt","r",stdin)
+#define wr freopen("op.txt", "w", stdout)
+#define wis(x) cerr << #x << " is " << x << endl;
+#define mem(array,int) memset(array,int,sizeof(array))
+#define ll long long int
+#define nl cout<<endl;
+#define mx 10000009
+#define MOD 1000000007
+using namespace std;
+
+
+
+int main()
+{
+
+//    rd;
+//    wr;
+
+
+    int k ;
+    cin>>k;
+
+    while ( k-- )
+    {
+        bool solv = false;
+
+        int A,B,C;
+
+        cin>>A>>B>>C;
+
+
+        for (int x = -100; x <= 100; ++x) {
+            for (int y = -100; y <= 100; ++y) {
+                for (int z = -100; z <= 100; ++z) {
+                    if( ( x!=y && y!= z && x!=z) && x+y+z == A && x*y*z == B && (x*x)+(y*y)+(z*z) == C )
+                    {
+                        cout<<x<<" "<<y<<" "<<z<<endl;
+                        solv = true;
+                        break;
+                    }
+                }
+                if (solv) break;
+            }
+            if (solv) break;
+        }
+        if(!solv)
+        cout<<"No solution."<<endl;
+    }
+
+    return 0;
+}
