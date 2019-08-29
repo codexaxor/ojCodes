@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+#define fst ios_base::sync_with_stdio(0); ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define PI acos(-1.0)
+#define rd freopen("ip.txt","r",stdin)
+#define wr freopen("op.txt", "w", stdout)
+#define wis(x) cerr << #x << " is " << x << endl;
+#define mem(array,int) memset(array,int,sizeof(array))
+#define ll long long int
+#define nl cout<<endl;
+#define mx 10000009
+#define MOD 1000000007
+using namespace std;
+
+
+
+// 10346
+
+int main(){
+
+    rd;
+    wr;
+
+    ll n,k;
+
+    while(cin>>n>>k)
+    {
+        ll cgrt = n;
+        ll bfr = 0;
+        while( (n/k) >= 1 ){
+            bfr += n/k;
+            n = n/k+n%k;
+        }
+        cout<<cgrt+bfr<<endl;
+
+    }
+
+    return 0;
+}
