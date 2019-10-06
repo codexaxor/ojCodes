@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+#define fst                       \
+    ios_base::sync_with_stdio(0); \
+    ios::sync_with_stdio(0);      \
+    cin.tie(0);                   \
+    cout.tie(0);
+#define PI acos(-1.0)
+#define rd freopen("io/ip.txt", "r", stdin)
+#define wr freopen("io/op.txt", "w", stdout)
+#define wis(x) cout << #x << " ----> " << x << endl;
+#define mem(array, int) memset(array, int, sizeof(array))
+#define ll long long int
+#define nl cout << endl;
+#define MX 100009
+#define MOD 1000000007
+using namespace std;
+
+
+
+
+
+int a[MX] , tree[4*MX];
+int build(int node,int L,int R)
+{
+    if(L == R)
+        return tree[node] = a[L];
+    int mid = (L+R)/2;
+    int x = build(node*2,L,mid);
+    int y = build(node*2+1,mid+1,R);
+    return tree[node] = min(x,y);
+}
+int query(int node,int L,int R,int l,int r)
+{
+    if(r<L || l>R)
+        return INT_MAX;
+    else if(l<=L && r>=R)
+        return tree[node];
+    int mid = (L+R)/2 , x , y;
+    x = query(node*2,L,mid,l,r);
+    y = query(node*2+1,mid+1,R,l,r);
+    return min(x,y);
+}
+int main()
+{
+    //rd;
+    fst;
+    int t,cs=1,n,q,x,y;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n>>q;
+        for(int i=1;i<=n;i++)
+            cin>>a[i];
+        build(1,1,n);
+        printf("Case %d:\n",cs++);
+        while(q--)
+        {
+            cin>>x>>y;
+            printf("%d\n",query(1,1,n,x,y));
+        }
+    }
+}
