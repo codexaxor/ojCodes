@@ -1,0 +1,135 @@
+#include "bits/stdc++.h"
+#define rd freopen("ip.txt","r",stdin)
+#define wr freopen("op.txt", "w", stdout)
+#define wis(x) cout << #x << " is " << x << endl;
+using namespace std;
+
+void SieveOfEratosthenes(int n, bool prime[], bool primesquare[], int a[])
+{
+// initialize prime array with true value
+	for (int i = 2; i <= n; i++)
+		prime[i] = true;
+// initialize primesquare array with false value
+	for (int i = 0; i <= (n * n + 1); i++)
+		primesquare[i] = false;
+
+// 1 is not a prime number
+	prime[1] = false;
+
+	for (int p = 2; p * p <= n; p++) {
+// if (prime[p]=true) then check really it is prime or not
+		if (prime[p] == true) {
+			// Update all multiples of p
+			for (int i = p * 2; i <= n; i += p)
+				prime[i] = false;
+		}
+	}
+/// store Final Prime values in array
+	int j = 0;
+	for (int p = 2; p <= n; p++) {
+		if (prime[p]) {
+			// Storing primes in an array
+			a[j] = p;
+// Update value in primesquare[p*p],if p is prime.
+			primesquare[p * p] = true;
+			j++;
+		}
+	}
+}
+
+// Function to count divisors =======
+int countDivisors(int n)
+{
+	// If number is 1, then it will have only 1
+	// as a factor. So, total factors will be 1.
+	if (n == 1)
+		return 1;
+
+	bool prime[n + 1], primesquare[n * n + 1];
+
+	int a[n]; // for storing primes upto n
+
+	SieveOfEratosthenes(n, prime, primesquare, a);
+
+// ans always initialize with 1
+	int ans = 1;
+
+	// Loop for counting factors of n
+	for (int i = 0; ; i++) {
+		// a[i] is not less than cube root n
+		if (a[i] * a[i] * a[i] > n)
+			break;
+
+		// Calculating power of a[i] in n.
+		int cnt = 1; // cnt is power of prime a[i] in n.
+		while (n % a[i] == 0) // if a[i] is a factor of n
+		{
+			n = n / a[i];
+			cnt = cnt + 1; // incrementing power
+		}
+
+		// Calculating number of divisors
+		// If n = a^p * b^q then total divisors of n
+		// are (p+1)*(q+1)
+		ans = ans * cnt;
+	}
+
+// if a[i] is greater than cube root of n
+
+	// First case
+	if (prime[n])
+		ans = ans * 2;
+
+	// Second case
+	else if (primesquare[n])
+		ans = ans * 3;
+
+	// Third casse
+	else if (n != 1)
+		ans = ans * 4;
+
+	return ans; // Total divisors
+}
+
+
+bool cmp(const pair<int, int>&x, const pair<int, int>&y )
+{
+	if (x.second == y.second)
+	{
+		return x.first < y.first;
+	}
+	return x.second > y.second;
+}
+int main()
+{
+
+	vector<pair<int, int> > store;
+
+	for (int i = 1; i <= 1000 ; ++i)
+	{
+		store.push_back(make_pair(i, countDivisors(i)));
+	}
+	sort(store.begin(), store.end(), cmp);
+	reverse(store.begin(), store.end());
+	map<int, int> mp;
+	int cnt = 1;
+	int trck[1009];
+	int p = 1, q;
+	for (auto it = store.begin(); it != store.end(); ++it)
+	{
+		q = (*it).first;
+		trck[p] = q;
+		p++;
+	}
+	int csn = 1, t;
+	scanf("%d", &t);
+	while (t--)
+	{
+		int x;
+		scanf("%d", &x);
+		printf("Case %d: %d\n", csn++, trck[x]);
+	}
+
+
+	return 0;
+}
