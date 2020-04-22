@@ -1,8 +1,12 @@
-#include "bits/stdc++.h"
-#define rd freopen("ip.txt","r",stdin)
-#define wr freopen("op.txt", "w", stdout)
-#define wis(x) cout << #x << " is " << x << endl;
-using namespace std;
+/*
+১। প্রথমে ১-১০০০ পর্যন্ত প্রতি সংখ্যার ডিভিসর গুলো বের করতে হবে। 
+২। সংখ্যা গুলোর মান এর সাথে তাদের ডিভিসর গুলোকে পেয়ার করে রাখতে হবে 
+৩। এবার কাস্টম সর্ট ফাংশন লিখতে হবে যেখানে প্রশ্ন অনুযায়ী পেয়ার গুলো সর্ট থাকবে 
+৪। ম্যাপ অথবা অ্যারে নিয়ে ভ্যালু গুলো স্টোর করে রাখতে হবে । 
+
+১। ফাংশন কল করতে হবে
+২। 
+*/
 
 void SieveOfEratosthenes(int n, bool prime[], bool primesquare[], int a[])
 {
