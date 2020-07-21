@@ -1,0 +1,36 @@
+/*
+
+here is the main trick : check values greter 5. 
+
+*/
+
+
+int main(int argc, char const *argv[]) {
+	int t, csn = 1;
+	scanf("%d", &t);
+
+	while (t--)
+	{
+		int n, x;
+		scanf("%d", &n);
+		int ans = 0, temp = 2, xx = 0;
+		int arr[n];
+
+		for (int i = 0; i < n; ++i)
+			scanf("%d", &arr[i]);
+
+		for (int i = 0; i < n; ++i)
+		{
+			if (temp < arr[i])
+			{
+				xx = arr[i] - temp;
+				ans += (xx / 5);
+				if (xx % 5)
+					ans++;
+				temp = arr[i];
+			}
+		}
+		printf("Case %d: %d\n", csn++, ans);
+	}
+	return 0;
+}
