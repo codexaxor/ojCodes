@@ -1,0 +1,54 @@
+// precalculate all Factorials 0 - 20. then iterate reverse. Decrease n if fact(i) is <= to n.
+
+
+#include "bits/stdc++.h"
+using namespace std;
+
+
+long long int fact[] = { 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800, 39916800, 479001600, 6227020800, 87178291200, 1307674368000, 20922789888000, 355687428096000, 6402373705728000, 121645100408832000, 2432902008176640000};
+
+int main(int argc, char const *argv[])
+{
+	int sz = sizeof(fact) / sizeof(*fact);
+	int t, csn = 1;
+	scanf("%d", &t);
+	while (t--)
+	{
+		long long int n, sm;
+		scanf("%lld", &n);
+		stack<int>ss;
+		bool flg = false;
+		for (int i = 20; i >= 0; --i)
+		{
+			if (fact[i] <= n)
+			{
+				n -= fact[i];
+				ss.push(i);
+			}
+			if (n == 0)
+			{
+				flg = true;
+				break;
+			}
+		}
+		if (flg)
+		{
+			printf("Case %d: ", csn++);
+			while (!ss.empty())
+			{
+				printf("%d", (int)ss.top());
+				ss.pop();
+				printf("!");
+				if (ss.size() != 0)
+					printf("+");
+			}
+		}
+		else
+			printf("Case %d: impossible", csn++);
+
+
+		printf("\n");
+	}
+
+	return 0;
+}
