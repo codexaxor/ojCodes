@@ -1,0 +1,36 @@
+/*
+check for same characters available for both strings.
+
+Careful :: cin>> testcase;
+            getchar();  // must use
+
+*/
+
+
+int main(int argc, char const *argv[]) {
+
+	int t, csn = 1;
+	cin >> t;
+	getchar();
+	while (t--)
+	{
+		bool flg = true;
+		string s1, s2;
+		int track[26];
+		for (int i = 0; i < 26; ++i) track[i] = 0;
+		//cin.ignore();
+		getline(cin, s1);
+		for (int i = 0; i < (int)s1.size(); ++i) if (s1[i] != ' ') track[tolower(s1[i]) - 97]++;
+
+		getline(cin, s2);
+		for (int i = 0; i < (int)s2.size(); ++i) if (s2[i] != ' ') track[tolower(s2[i]) - 97]++;
+		for (int i = 0; i < 26; ++i)
+			if (track[i] % 2) {
+				flg = false;
+				break;
+			}
+		if (flg) printf("Case %d: Yes\n", csn++);
+		else printf("Case %d: No\n", csn++);
+	}
+	return 0;
+}
